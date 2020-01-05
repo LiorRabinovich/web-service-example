@@ -1,0 +1,43 @@
+{
+  "name": "web-service-example",
+  "version": "1.0.0",
+  "description": "Web service example with Node.js, Express, Sequelize, MySQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon -L -r dotenv/config server.js",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "db:create": "sequelize db:create",
+    "db:migrate": "sequelize db:migrate",
+    "db:drop": "sequelize db:drop",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "release": "standard-version && git push --follow-tags"
+  },
+  "author": "Lior Rabinovich",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "morgan": "^1.9.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^1.19.3",
+    "sequelize": "^5.21.3",
+    "sequelize-cli": "^5.5.1",
+    "swagger-ui-express": "^4.1.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "cross-env": "^6.0.3",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.16.4",
+    "standard-version": "^7.0.1",
+    "supertest": "^4.0.2"
+  }
+}

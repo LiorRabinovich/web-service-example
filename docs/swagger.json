@@ -1,0 +1,339 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Web Service Example API",
+    "description": "Move your app forward with the Web Service Example API",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Get all products",
+        "description": "Get all products. The endpoint returns products list.",
+        "tags": [
+          "Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of products",
+            "schema": {
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": "true"
+                },
+                "message": {
+                  "type": "string",
+                  "example": ""
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new product",
+        "description": "Create a new product. The endpoints return the new product.",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "A new product object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A new product object",
+            "schema": {
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": "true"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Product created"
+                },
+                "data": {
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request error",
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/products/:productId": {
+      "get": {
+        "summary": "Get product by id",
+        "description": "Get product by id",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Number ID of the product",
+            "required": true,
+            "name": "productId",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A success response",
+            "schema": {
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": "true"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Product updated"
+                },
+                "data": {
+                  "type": "array | object",
+                  "example": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update product by id",
+        "description": "Update product by id",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Number ID of the product",
+            "required": true,
+            "name": "productId",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "A new product object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A success response",
+            "schema": {
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": "true"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Product updated"
+                },
+                "data": {
+                  "type": "array | object",
+                  "example": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request error",
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
+          },
+          "404": {
+            "description": "Not Found Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete product by id",
+        "description": "Delete product by id",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "description": "Number ID of the product",
+            "required": true,
+            "name": "productId",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A success response",
+            "schema": {
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": "true"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Product updated"
+                },
+                "data": {
+                  "type": "array | object",
+                  "example": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "properties": {
+        "product_id": {
+          "type": "number",
+          "description": "Unique identifier representing a specific product.",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of product.",
+          "example": "Product one name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of product.",
+          "example": "Product one description"
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of product.",
+          "example": "20"
+        }
+      }
+    },
+    "BadRequestError": {
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": false
+        },
+        "message": {
+          "type": "string",
+          "example": "  Bad Request"
+        },
+        "data": {
+          "type": "array | object",
+          "example": [
+            {
+              "type": "invalid_param",
+              "field": "name",
+              "title": "\"name\" is required"
+            }
+          ]
+        }
+      }
+    },
+    "Error": {
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": false
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array | object",
+          "example": []
+        }
+      }
+    }
+  }
+}
