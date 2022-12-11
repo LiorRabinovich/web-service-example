@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "joi": "^14.3.1",
     "morgan": "^1.9.1",
     "mysql2": "^2.1.0",
